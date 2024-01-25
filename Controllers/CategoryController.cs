@@ -35,6 +35,8 @@ namespace AspCategoryApp.Controllers
                 _db.Categories.Add(obj);
                 _db.SaveChanges();
 
+                TempData["success"] = "Category created!";
+
                 return RedirectToAction("Index");
             }
             return View(obj);
@@ -46,7 +48,7 @@ namespace AspCategoryApp.Controllers
                 return NotFound();
             }
 
-            var categoryFomDb = _db.Categories.FirstOrDefault(u=>u.Id == id);
+            var categoryFomDb = _db.Categories.Find(id);
 
             if (categoryFomDb == null) { return NotFound(); }
 
@@ -83,10 +85,9 @@ namespace AspCategoryApp.Controllers
         }
 
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public IActionResult DeletePOST(int? id)
         {
-            var cat = _db.Categories.Find(id);
+            Category? cat = _db.Categories.Find(id);
 
             if(cat == null) { return NotFound(); }
 

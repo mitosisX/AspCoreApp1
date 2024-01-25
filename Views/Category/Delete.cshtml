@@ -4,8 +4,9 @@
     ViewData["Title"] = "Delete";
 }
 
+<partial name="_Notification" />
 
-<form method="post" asp-controller="Category" asp-action="DeletePOST">
+<form method="post">
     <input asp-for="Id" hidden/>
     <div class="border p-3 mt-4">
         <div class="row pb-2">
@@ -25,7 +26,7 @@
             <input asp-for="DisplayOrder" class="form-control" disabled/>
             <span asp-validation-for="DisplayOrder" class="text-danger"></span>
         </div>
-        <button type="submit" class="btn btn-primary">Delete</button>
+        <button type="submit" class="btn btn-danger" >Delete</button>
         <a asp-controller="Category" asp-action="Index" class="btn btn-primary">Back</a>
     </div>
 </form>
